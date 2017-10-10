@@ -1,15 +1,11 @@
 import React, { PureComponent } from 'react'
 import { connect } from 'react-redux'
-import PropTypes from 'prop-types'
 import fetchClasses from '../../actions/classes/fetch'
 
 import ClassItem from './ClassItem'
+import ClassEditor from './ClassEditor'
 
 class ClassesContainer extends PureComponent {
-  static propTypes = {
-    recipes: PropTypes.array.isRequired,
-    fetchRecipes: PropTypes.func.isRequired,
-  }
 
   componentWillMount() {
     this.props.fetchClasses()
@@ -29,6 +25,7 @@ class ClassesContainer extends PureComponent {
 
        <main>
         { this.props.classes.map(this.renderClass.bind(this)) }
+        <ClassEditor />
        </main>
      </div>
     );
