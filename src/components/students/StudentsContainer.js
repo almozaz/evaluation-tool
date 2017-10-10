@@ -1,7 +1,7 @@
 import React, { PureComponent } from 'react';
 import StudentItem from './StudentItem'
 
-class StudentContainer extends PureComponent {
+class StudentsContainer extends PureComponent {
   render() {
     return (
       <div className="students wrapper">
@@ -18,4 +18,4 @@ class StudentContainer extends PureComponent {
   }
 }
 
-export default StudentContainer
+export default StudentsContainer
