@@ -1,6 +1,7 @@
 import React, { PureComponent } from 'react'
 import { connect } from 'react-redux'
 import StudentItem from './StudentItem'
+import StudentEditor from './StudentEditor'
 
 import fetchClasses from '../../actions/classes/fetch'
 import fetchStudents from '../../actions/students/fetch'
@@ -11,7 +12,14 @@ class StudentsContainer extends PureComponent {
     this.props.fetchStudents()
   }
 
+  renderStudents(student, index) {
+    return <StudentItem
+      key={index} { ...student } />
+  }
+
   render() {
+    const { students } = this.props
+
     return (
       <div className="batch page">
        <header>
@@ -19,8 +27,8 @@ class StudentsContainer extends PureComponent {
        </header>
 
        <main>
-        <StudentItem />
 
+        <StudentEditor {...this.props} />
        </main>
      </div>
     );
@@ -35,7 +43,7 @@ const mapStateToProps = ({ classes }, { params }) => {
     return prev
   }, {})
   return {
-    ...currentClass
+    ...currentClass,
   }
 }
 

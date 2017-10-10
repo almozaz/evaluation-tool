@@ -1,81 +1,73 @@
 import React, { PureComponent } from 'react'
 import { connect } from 'react-redux'
 
-import createBatch from '../../actions/classes/create'
+import createStudent from '../../actions/students/create'
 
-class BatchEditor extends PureComponent {
+class StudentEditor extends PureComponent {
   constructor(props) {
     super()
 
-    const { batch, startDate, endDate } = props
+    const { name, photo, classId } = props
 
     this.state = {
-      batch: batch || '',
-      startDate,
-      endDate,
+      name,
+      photo,
       errors: {}
     }
   }
 
-  updateTitle(event) {
+  updateName(event) {
     if (event.keyCode === 13) {
       event.preventDefault()
       this.refs.summary.medium.elements[0].focus()
     }
     this.setState({
-      batch: event.target.value
+      name: event.target.value
     })
   }
 
-  updateStartDate(event) {
+  updatePhoto(event) {
     this.setState({
-      startDate: event.target.value
-    })
-  }
-
-  updateEndDate(event) {
-    this.setState({
-      endDate: event.target.value
+      photo: event.target.value
     })
   }
 
   validate() {
-    const isTitleValid = this.validateTitle()
+    const isNameValid = this.validateName()
 
     this.setState({
       errors: {
-        title: isTitleValid ? null : 'The title can not be blank!',
+        title: isNameValid ? null : 'The name can not be blank!',
       }
     })
-    return isTitleValid
+    return isNameValid
   }
 
-  validateTitle() {
-    const { batch } = this.state
-    return batch && batch.length > 0
+  validateName() {
+    const { name } = this.state
+    return name && name.length > 0
   }
 
-  saveBatch() {
+  saveStudent() {
+
     if (!this.validate()) return
 
     const {
-      batch,
-      startDate,
-      endDate,
+      name,
+      photo,
     } = this.state
 
-    const newBatch = {
-      batch,
-      startDate,
-      endDate,
+    const newStudent = {
+      name,
+      photo,
+      classId: this.props._id,
     }
 
-    this.props.save(newBatch)
+    this.props.save(newStudent)
 
     this.setState({
-      batch: '',
-      startDate: null,
-      endDate: null,
+      name: '',
+      photo: '',
     })
   }
 
@@ -86,37 +78,30 @@ class BatchEditor extends PureComponent {
       <div className="editor">
         <input
           type="text"
-          ref="title"
-          className="title"
-          placeholder="Batch Number"
-          value={this.state.title}
-          onChange={this.updateTitle.bind(this)} />
+          ref="name"
+          className="name"
+          placeholder="Student name"
+          value={this.state.name}
+          onChange={this.updateName.bind(this)} />
 
         { errors.title ? <small className="error">{errors.title}</small> : null }
 
         <input
-          type="date"
-          ref="startDate"
-          className="startDate"
-          placeholder="Photo URL"
-          value={this.state.startDate}
-          onChange={this.updateStartDate.bind(this)} />
-
-        <input
-          type="date"
-          ref="endDate"
-          className="endDate"
-          value={this.state.endDate}
-          onChange={this.updateEndDate.bind(this)} />
+          type="text"
+          ref="photo"
+          className="photo"
+          placeholder="Student photo"
+          value={this.state.photo}
+          onChange={this.updatePhoto.bind(this)} />
 
         <div className="actions">
-          <button className="primary" onClick={this.saveBatch.bind(this)}>Save</button>
+          <button className="primary" onClick={this.saveStudent.bind(this)}>Save</button>
         </div>
       </div>
     )
   }
 }
 
-const mapDispatchToProps = { save: createBatch }
+const mapDispatchToProps = { save: createStudent }
 
-export default connect(null, mapDispatchToProps)(BatchEditor)
+export default connect(null, mapDispatchToProps)(StudentEditor)
