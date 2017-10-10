@@ -15,6 +15,11 @@ class ClassesContainer extends PureComponent {
     this.props.fetchClasses()
   }
 
+  renderClass(batch, index) {
+    return <ClassItem
+      key={index} { ...batch } />
+  }
+
   render() {
     return (
       <div className="classes wrapper">
@@ -23,8 +28,7 @@ class ClassesContainer extends PureComponent {
        </header>
 
        <main>
-        <ClassItem />
-        //link to each class
+        { this.props.classes.map(this.renderClass.bind(this)) }
        </main>
      </div>
     );
