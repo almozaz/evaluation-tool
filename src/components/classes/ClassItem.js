@@ -7,7 +7,7 @@ class classItem extends PureComponent {
   render() {
     return (
       <div>
-      <h3><Link to={`/class`}>Batch {this.props.batch}</Link></h3>
+      <h3><Link to={`/classes/${this.props._id}`}>Batch {this.props.batch}</Link></h3>
       </div>
     )
   }
