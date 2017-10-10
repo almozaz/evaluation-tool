@@ -1,7 +1,20 @@
-import React, { PureComponent } from 'react';
+import React, { PureComponent } from 'react'
+import { connect } from 'react-redux'
+import PropTypes from 'prop-types'
+import fetchClasses from '../../actions/classes/fetch'
+
 import ClassItem from './ClassItem'
 
 class ClassesContainer extends PureComponent {
+  static propTypes = {
+    recipes: PropTypes.array.isRequired,
+    fetchRecipes: PropTypes.func.isRequired,
+  }
+
+  componentWillMount() {
+    this.props.fetchClasses()
+  }
+
   render() {
     return (
       <div className="classes wrapper">
@@ -18,4 +31,6 @@ class ClassesContainer extends PureComponent {
   }
 }
 
-export default ClassesContainer
+const mapStateToProps = ({ classes }) => ({ classes })
+
+export default connect(mapStateToProps, { fetchClasses })(ClassesContainer)
