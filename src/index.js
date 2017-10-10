@@ -7,7 +7,6 @@ import registerServiceWorker from './registerServiceWorker'
 import App from './App'
 
 import ClassesContainer from './components/classes/ClassesContainer'
-import BatchPage from './components/classes/BatchPage'
 import StudentsContainer from './components/students/StudentsContainer'
 import EvaluationContainer from './components/evaluation/EvaluationContainer'
 
@@ -19,7 +18,7 @@ ReactDOM.render(
       <Route path="/" component={App}>
         <IndexRoute component={ClassesContainer} />
         <Route path="/class" component={StudentsContainer} />
-        <Route path="/classes/:classId" component={BatchPage} />
+        <Route path="/classes/:classId" component={StudentsContainer} />
         <Route path="/evaluation" component={EvaluationContainer} />
       </Route>
     </Router>

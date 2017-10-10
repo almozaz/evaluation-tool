@@ -1,3 +1,12 @@
+import { FETCHED_STUDENTS } from '../actions/students/fetch'
+
+
 export default (state = [], { type, payload } = {}) => {
-  return state
+  switch (type) {
+    case FETCHED_STUDENTS :
+      return [].concat(payload)
+
+    default :
+      return state
+  }
 }
