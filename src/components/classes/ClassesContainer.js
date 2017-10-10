@@ -1,4 +1,4 @@
-import React, { PureComponent } from 'react';
+import React, { PureComponent } from 'react'
 import ClassItem from './ClassItem'
 
 class ClassesContainer extends PureComponent {

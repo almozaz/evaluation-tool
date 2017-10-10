@@ -1,12 +1,14 @@
 import React, { PureComponent } from 'react'
+import { connect } from 'react-redux'
+import { Link } from 'react-router'
 
 class StudentItem extends PureComponent {
 
   render() {
     return (
       <div>
-      <h3>Student 1</h3>
-      <h3>Student 2</h3>
+      <h3><Link to={`/evaluation`}>Student 1</Link></h3>
+      <h3><Link to={`/evaluation`}>Student 2</Link></h3>
       </div>
     )
   }
