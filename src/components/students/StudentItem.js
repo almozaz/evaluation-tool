@@ -7,9 +7,9 @@ class StudentItem extends PureComponent {
   render() {
     return (
       <div>
-      <h3><Link to={`/evaluation`}>{this.props.name}</Link></h3>
+      <h3><Link to={`/${this.props._id}`}>{this.props.name}</Link></h3>
       </div>
     )
   }
 }
-export default StudentItem
+export default connect(null, null)(StudentItem)

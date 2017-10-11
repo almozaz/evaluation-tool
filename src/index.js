@@ -19,7 +19,7 @@ ReactDOM.render(
         <IndexRoute component={ClassesContainer} />
         <Route path="/class" component={StudentsContainer} />
         <Route path="/classes/:classId" component={StudentsContainer} />
-        <Route path="/evaluation" component={EvaluationContainer} />
+        <Route path="/:studentId" component={EvaluationContainer} />
       </Route>
     </Router>
   </Provider>,

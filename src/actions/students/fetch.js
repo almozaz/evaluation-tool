@@ -7,7 +7,11 @@ const api = new API()
 export default () => {
   return (dispatch) => {
     const backend = api.service('students')
-    backend.find()
+    backend.find({
+      query: {
+        $limit: false
+      }
+    })
     .then((result) => {
       dispatch({
         type: FETCHED_STUDENTS,
