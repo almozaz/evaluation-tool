@@ -1,4 +1,6 @@
 import React, { PureComponent } from 'react'
+import { connect } from 'react-redux'
+import { Link } from 'react-router'
 
 class EvaluationItem extends PureComponent {
 
@@ -10,4 +12,4 @@ class EvaluationItem extends PureComponent {
     )
   }
 }
-export default EvaluationItem
+export default connect(null, null)(EvaluationItem)

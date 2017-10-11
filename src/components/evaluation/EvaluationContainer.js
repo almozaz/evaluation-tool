@@ -14,6 +14,7 @@ class EvaluationContainer extends PureComponent {
 
   renderEvaluations() {
     const { evaluations } = this.props
+    
     if (!evaluations) return null
     if (evaluations.length > 1) return (
       evaluations.map(function(evaluation, index){
