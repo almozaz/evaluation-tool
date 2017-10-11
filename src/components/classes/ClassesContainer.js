@@ -17,6 +17,7 @@ class ClassesContainer extends PureComponent {
   }
 
   render() {
+    if (!this.props.classes) return null
     return (
       <div className="classes wrapper">
        <header>

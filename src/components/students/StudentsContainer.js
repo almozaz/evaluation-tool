@@ -9,7 +9,6 @@ import fetchStudents from '../../actions/students/fetch'
 class StudentsContainer extends PureComponent {
   componentWillMount() {
     this.props.fetchClasses()
-    this.props.fetchStudents()
   }
 
   renderStudents(student, index) {
@@ -18,8 +17,7 @@ class StudentsContainer extends PureComponent {
   }
 
   render() {
-    const { students } = this.props
-
+    if (!this.props.students) return null
     return (
       <div className="batch page">
        <header>
@@ -27,7 +25,7 @@ class StudentsContainer extends PureComponent {
        </header>
 
        <main>
-
+        { this.props.students.map(this.renderStudents.bind(this)) }
         <StudentEditor {...this.props} />
        </main>
      </div>
