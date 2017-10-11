@@ -1,6 +1,8 @@
 import React, { PureComponent } from 'react';
 import { connect } from 'react-redux'
+
 import EvaluationItem from './EvaluationItem'
+import EvaluationEditor from './EvaluationEditor'
 
 import fetchStudents from '../../actions/students/fetch'
 
@@ -18,6 +20,7 @@ class EvaluationContainer extends PureComponent {
 
        <main>
         <EvaluationItem />
+        <EvaluationEditor {...this.props} />
        </main>
      </div>
     );
