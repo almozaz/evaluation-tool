@@ -10,7 +10,17 @@ import fetchEvaluations from '../../actions/evaluation/fetch'
 class EvaluationContainer extends PureComponent {
   componentWillMount() {
     this.props.fetchStudents()
-    this.props.fetchEvaluations()
+  }
+
+  renderEvaluations() {
+    const { evaluations } = this.props
+    if (!evaluations) return null
+    if (evaluations.length > 1) return (
+      evaluations.map(function(evaluation, index){
+        return <EvaluationItem
+          key={index} { ...evaluation } />
+        }))
+    return (<EvaluationItem { ...this.props.evaluations } />)
   }
 
   render() {
@@ -21,7 +31,7 @@ class EvaluationContainer extends PureComponent {
        </header>
 
        <main>
-        <EvaluationItem />
+       { this.renderEvaluations() }
         <EvaluationEditor {...this.props} />
        </main>
      </div>
