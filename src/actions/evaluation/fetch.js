@@ -1,12 +1,12 @@
 import API from '../../api'
 
-export const FETCHED_STUDENTS = 'FETCHED_STUDENTS'
+export const FETCH_EVALUATIONS = 'FETCH_EVALUATIONS'
 
 const api = new API()
 
 export default () => {
   return (dispatch) => {
-    const backend = api.service('students')
+    const backend = api.service('evaluations')
     backend.find({
       query: {
         $limit: false
@@ -14,12 +14,12 @@ export default () => {
     })
     .then((result) => {
       dispatch({
-        type: FETCHED_STUDENTS,
+        type: FETCH_EVALUATIONS,
         payload: result.data
       })
     })
     .catch((error) => {
-      console.log(error)
+      // error handling!
     })
   }
 }

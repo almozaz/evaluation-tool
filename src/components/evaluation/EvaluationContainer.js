@@ -5,10 +5,12 @@ import EvaluationItem from './EvaluationItem'
 import EvaluationEditor from './EvaluationEditor'
 
 import fetchStudents from '../../actions/students/fetch'
+import fetchEvaluations from '../../actions/evaluation/fetch'
 
 class EvaluationContainer extends PureComponent {
   componentWillMount() {
     this.props.fetchStudents()
+    this.props.fetchEvaluations()
   }
 
   render() {
@@ -39,4 +41,4 @@ const mapStateToProps = ({ students }, { params }) => {
   }
 }
 
-export default connect(mapStateToProps, { fetchStudents })(EvaluationContainer)
+export default connect(mapStateToProps, { fetchStudents, fetchEvaluations })(EvaluationContainer)
