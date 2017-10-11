@@ -12,11 +12,15 @@ class StudentsContainer extends PureComponent {
   }
 
   renderStudents() {
-    if (!this.props.students) return null
-    return this.props.students.map(function(student, index){
-      return <StudentItem
-        key={index} { ...student } />
-    })
+    const { students } = this.props
+    if (!students) return null
+    if (students.length > 1) return (
+      students.map(function(student, index){
+        return <StudentItem
+          key={index} { ...student } />
+      })
+    )
+    return (<StudentItem { ...students } />)
   }
 
   render() {

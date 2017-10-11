@@ -14,14 +14,14 @@ class EvaluationContainer extends PureComponent {
 
   renderEvaluations() {
     const { evaluations } = this.props
-    
+
     if (!evaluations) return null
     if (evaluations.length > 1) return (
       evaluations.map(function(evaluation, index){
         return <EvaluationItem
           key={index} { ...evaluation } />
         }))
-    return (<EvaluationItem { ...this.props.evaluations } />)
+    return (<EvaluationItem { ...evaluations } />)
   }
 
   render() {

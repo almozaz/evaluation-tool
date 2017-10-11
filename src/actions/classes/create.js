@@ -1,6 +1,8 @@
 import API from '../../api'
 import { history } from '../../store'
 
+export const CREATE_CLASS = 'CREATE_CLASS'
+
 const api = new API()
 
 export default (batch) => {
@@ -9,7 +11,10 @@ export default (batch) => {
     const backend = api.service('classes')
     backend.create(batch)
       .then((result) => {
-        console.log(result)
+        dispatch({
+          type: CREATE_CLASS,
+          payload: result
+        })
       })
       .catch((error) => {
       })
