@@ -41,7 +41,7 @@ class EvaluationEditor extends PureComponent {
   }
 
   validateDay() {
-
+    return true
   }
 
   saveEvaluation() {
@@ -56,7 +56,7 @@ class EvaluationEditor extends PureComponent {
     const newEvaluation = {
       day,
       grade,
-      studentId: this.props._id,
+      studentId: this.props.params.studentId,
     }
 
     this.props.save(newEvaluation)
@@ -69,7 +69,6 @@ class EvaluationEditor extends PureComponent {
 
   render() {
     const { errors } = this.state
-    debugger;
 
     return (
       <div className="editor">
