@@ -7,10 +7,10 @@ class classItem extends PureComponent {
   render() {
     return (
       <div>
-      <h3><Link to={`/class`}>Batch 1</Link></h3>
-      <h3><Link to={`/class`}>Batch 2</Link></h3>
+      <h3><Link to={`/classes/${this.props._id}`}>Batch {this.props.batch}</Link></h3>
       </div>
     )
   }
 }
-export default classItem
+
+export default connect(null, null)(classItem)

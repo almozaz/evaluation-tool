@@ -7,8 +7,7 @@ class StudentItem extends PureComponent {
   render() {
     return (
       <div>
-      <h3><Link to={`/evaluation`}>Student 1</Link></h3>
-      <h3><Link to={`/evaluation`}>Student 2</Link></h3>
+      <h3><Link to={`/evaluation`}>{this.props.name}</Link></h3>
       </div>
     )
   }

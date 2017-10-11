@@ -18,6 +18,7 @@ ReactDOM.render(
       <Route path="/" component={App}>
         <IndexRoute component={ClassesContainer} />
         <Route path="/class" component={StudentsContainer} />
+        <Route path="/classes/:classId" component={StudentsContainer} />
         <Route path="/evaluation" component={EvaluationContainer} />
       </Route>
     </Router>
