@@ -11,13 +11,15 @@ class StudentsContainer extends PureComponent {
     this.props.fetchClasses()
   }
 
-  renderStudents(student, index) {
-    return <StudentItem
-      key={index} { ...student } />
+  renderStudents() {
+    if (!this.props.students) return null
+    return this.props.students.map(function(student, index){
+      return <StudentItem
+        key={index} { ...student } />
+    })
   }
 
   render() {
-    if (!this.props.students) return null
     return (
       <div className="batch page">
        <header>
@@ -25,7 +27,7 @@ class StudentsContainer extends PureComponent {
        </header>
 
        <main>
-        { this.props.students.map(this.renderStudents.bind(this)) }
+        { this.renderStudents() }
         <StudentEditor {...this.props} />
        </main>
      </div>
