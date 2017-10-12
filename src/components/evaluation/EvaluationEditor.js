@@ -72,6 +72,7 @@ class EvaluationEditor extends PureComponent {
 
     return (
       <div className="editor">
+        <h4>Add evaluation</h4>
         <input
           type="date"
           ref="day"

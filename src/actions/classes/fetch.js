@@ -1,6 +1,6 @@
 import API from '../../api'
 
-export const FETCHED_CLASSES = 'FETCHED_CLASSES'
+export const FETCH_CLASSES = 'FETCH_CLASSES'
 
 const api = new API()
 
@@ -10,7 +10,7 @@ export default () => {
     backend.find()
     .then((result) => {
       dispatch({
-        type: FETCHED_CLASSES,
+        type: FETCH_CLASSES,
         payload: result.data
       })
     })

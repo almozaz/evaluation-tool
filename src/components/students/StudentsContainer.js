@@ -1,7 +1,9 @@
 import React, { PureComponent } from 'react'
 import { connect } from 'react-redux'
+
 import StudentItem from './StudentItem'
 import StudentEditor from './StudentEditor'
+import RandomStudent from './RandomStudent'
 
 import fetchClasses from '../../actions/classes/fetch'
 import fetchStudents from '../../actions/students/fetch'
@@ -12,11 +14,15 @@ class StudentsContainer extends PureComponent {
   }
 
   renderStudents() {
-    if (!this.props.students) return null
-    return this.props.students.map(function(student, index){
-      return <StudentItem
-        key={index} { ...student } />
-    })
+    const { students } = this.props
+    if (!students) return null
+    if (students.length > 1) return (
+      students.map(function(student, index){
+        return <StudentItem
+          key={index} { ...student } />
+      })
+    )
+    return (<StudentItem { ...students } />)
   }
 
   render() {
@@ -27,6 +33,7 @@ class StudentsContainer extends PureComponent {
        </header>
 
        <main>
+        <RandomStudent {...this.props} />
         { this.renderStudents() }
         <StudentEditor {...this.props} />
        </main>
