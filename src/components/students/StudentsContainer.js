@@ -1,7 +1,9 @@
 import React, { PureComponent } from 'react'
 import { connect } from 'react-redux'
+
 import StudentItem from './StudentItem'
 import StudentEditor from './StudentEditor'
+import RandomStudent from './RandomStudent'
 
 import fetchClasses from '../../actions/classes/fetch'
 import fetchStudents from '../../actions/students/fetch'
@@ -31,6 +33,7 @@ class StudentsContainer extends PureComponent {
        </header>
 
        <main>
+        <RandomStudent {...this.props} />
         { this.renderStudents() }
         <StudentEditor {...this.props} />
        </main>
