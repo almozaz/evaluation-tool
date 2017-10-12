@@ -4,7 +4,7 @@ export default (state = [], { type, payload } = {}) => {
   switch (type) {
 
     case RANDOM_STUDENT :
-      return [].concat(payload)
+      return payload
 
     default :
       return state

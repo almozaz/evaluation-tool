@@ -9,7 +9,7 @@ import fetchEvaluations from '../../actions/evaluation/fetch'
 
 class EvaluationContainer extends PureComponent {
   componentWillMount() {
-    this.props.fetchStudents()
+    this.props.fetchStudents(this.props.params.studentId)
   }
 
   renderEvaluations() {

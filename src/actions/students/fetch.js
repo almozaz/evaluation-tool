@@ -1,20 +1,20 @@
 import API from '../../api'
 
-export const FETCHED_STUDENTS = 'FETCHED_STUDENTS'
+export const FETCH_STUDENT = 'FETCH_STUDENT'
 
 const api = new API()
 
-export default () => {
+export default (studentId) => {
   return (dispatch) => {
     const backend = api.service('students')
     backend.find({
       query: {
-        $limit: false
+        _id: studentId
       }
     })
     .then((result) => {
       dispatch({
-        type: FETCHED_STUDENTS,
+        type: FETCH_STUDENT,
         payload: result.data
       })
     })

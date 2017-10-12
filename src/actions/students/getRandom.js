@@ -1,4 +1,5 @@
 import API from '../../api'
+import filterResult from './logic'
 
 export const RANDOM_STUDENT = 'RANDOM_STUDENT'
 
@@ -13,9 +14,10 @@ export default (classId) => {
       }
     })
     .then((result) => {
+      const student = filterResult(result)
       dispatch({
         type: RANDOM_STUDENT,
-        payload: result.data
+        payload: student
       })
     })
     .catch((error) => {
