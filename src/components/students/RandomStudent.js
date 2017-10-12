@@ -1,5 +1,6 @@
 import React, { PureComponent } from 'react'
 import { connect } from 'react-redux'
+import { push } from 'react-router-redux';
 
 import getRandom from '../../actions/students/getRandom'
 
@@ -17,4 +18,6 @@ class RandomStudent extends PureComponent {
   }
 }
 
-export default connect(null, { getRandom })(RandomStudent)
+const mapStateToProps = ({ randomStudent }) => ({ randomStudent })
+
+export default connect(mapStateToProps, { getRandom, push })(RandomStudent)
