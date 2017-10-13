@@ -8,7 +8,7 @@ export default (result) => {
     const grade = randomGrade()
 
     const students = result.data.filter(function(student){
-      if (student["evaluations"] == undefined) return false
+      if (student["evaluations"] == undefined) return true
       if (student.evaluations.length > 1){
         return student.evaluations[student.evaluations.length - 1].grade === grade
       }

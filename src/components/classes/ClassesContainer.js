@@ -4,6 +4,7 @@ import fetchClasses from '../../actions/classes/fetch'
 
 import ClassItem from './ClassItem'
 import ClassEditor from './ClassEditor'
+import DeleteButton from './../deleteButton'
 
 class ClassesContainer extends PureComponent {
 
@@ -14,6 +15,12 @@ class ClassesContainer extends PureComponent {
   renderClass(batch, index) {
     return <ClassItem
       key={index} { ...batch } />
+  }
+
+  deleteClass(){
+    console.log('delete')
+    debugger
+    this.props.deleteClass()
   }
 
   render() {

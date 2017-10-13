@@ -3,8 +3,10 @@ import { connect } from 'react-redux'
 
 import EvaluationItem from './EvaluationItem'
 import EvaluationEditor from './EvaluationEditor'
+import DeleteButton from './../deleteButton'
 
 import fetchStudents from '../../actions/students/fetch'
+import deleteStudent from '../../actions/students/delete'
 import fetchEvaluations from '../../actions/evaluation/fetch'
 
 class EvaluationContainer extends PureComponent {
@@ -24,6 +26,11 @@ class EvaluationContainer extends PureComponent {
     return (<EvaluationItem { ...evaluations } />)
   }
 
+  delete(){
+    console.log('delete')
+    this.props.deleteStudent(this.props._id)
+  }
+
   render() {
     return (
       <div className="evaluation wrapper">
@@ -34,6 +41,7 @@ class EvaluationContainer extends PureComponent {
        <main>
        { this.renderEvaluations() }
         <EvaluationEditor {...this.props} />
+        <DeleteButton handleClick={this.delete} {...this.props} />
        </main>
      </div>
     );
@@ -52,4 +60,4 @@ const mapStateToProps = ({ students }, { params }) => {
   }
 }
 
-export default connect(mapStateToProps, { fetchStudents, fetchEvaluations })(EvaluationContainer)
+export default connect(mapStateToProps, { fetchStudents, fetchEvaluations, deleteStudent })(EvaluationContainer)
