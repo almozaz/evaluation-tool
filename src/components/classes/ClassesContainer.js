@@ -33,6 +33,8 @@ class ClassesContainer extends PureComponent {
 
        <main>
         { this.props.classes.map(this.renderClass.bind(this)) }
+        <hr />
+        <h4>Add new batch</h4>
         <ClassEditor />
        </main>
      </div>

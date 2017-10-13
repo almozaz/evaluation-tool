@@ -2,6 +2,8 @@ import React, { PureComponent } from 'react'
 import { connect } from 'react-redux'
 import DatePicker from 'material-ui/DatePicker';
 import TextField from 'material-ui/TextField';
+import FloatingActionButton from 'material-ui/FloatingActionButton';
+import ContentAdd from 'material-ui/svg-icons/content/add';
 
 import createBatch from '../../actions/classes/create'
 
@@ -83,6 +85,9 @@ class BatchEditor extends PureComponent {
 
   render() {
     const { errors } = this.state
+    const style = {
+      marginRight: 20,
+    };
 
     return (
       <div className="editor">
@@ -110,7 +115,9 @@ class BatchEditor extends PureComponent {
           />
 
         <div className="actions">
-          <button className="primary" onClick={this.saveBatch.bind(this)}>Save</button>
+        <FloatingActionButton style={style} mini={true} onClick={this.saveBatch.bind(this)}>
+          <ContentAdd />
+        </FloatingActionButton>
         </div>
       </div>
     )

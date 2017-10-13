@@ -1,6 +1,7 @@
 import React, { PureComponent } from 'react'
 import { connect } from 'react-redux'
 import { push } from 'react-router-redux';
+import FlatButton from 'material-ui/FlatButton';
 
 
 class deleteButton extends PureComponent {
@@ -8,7 +9,7 @@ class deleteButton extends PureComponent {
 
     return (
       <div>
-      <button onClick={this.props.handleClick.bind(this)}>Delete</button>
+      <FlatButton label="Delete" onClick={this.props.handleClick.bind(this)}/>
       </div>
     )
   }
