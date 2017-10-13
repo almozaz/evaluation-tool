@@ -7,18 +7,20 @@ const api = new API()
 
 export default (batch) => {
   return (dispatch) => {
-
-    const backend = api.service('classes')
-    backend.remove(batch)
-      .then((result) => {
-        dispatch({
-          type: DELETE_CLASS,
-          payload: result
-        })
-        history.push('/')
+    
+    api.app.authenticate()
+      .then(() => {
+        const backend = api.service('classes')
+        backend.remove(batch)
+          .then((result) => {
+            dispatch({
+              type: DELETE_CLASS,
+              payload: result
+            })
+            history.push('/')
+          })
+          .catch((error) => {
+          })
       })
-      .catch((error) => {
-      })
-
   }
 }
