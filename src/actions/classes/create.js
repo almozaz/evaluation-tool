@@ -8,16 +8,18 @@ const api = new API()
 export default (batch) => {
   return (dispatch) => {
 
-    const backend = api.service('classes')
-    backend.create(batch)
-      .then((result) => {
-        dispatch({
-          type: CREATE_CLASS,
-          payload: result
-        })
+    api.app.authenticate()
+      .then(() => {
+        const backend = api.service('classes')
+        backend.create(batch)
+          .then((result) => {
+            dispatch({
+              type: CREATE_CLASS,
+              payload: result
+            })
+          })
+          .catch((error) => {
+          })
       })
-      .catch((error) => {
-      })
-
   }
 }

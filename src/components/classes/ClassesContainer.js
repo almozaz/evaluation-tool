@@ -25,6 +25,12 @@ class ClassesContainer extends PureComponent {
 
   render() {
     if (!this.props.classes) return null
+    if (!this.props.user) return (
+      <div>
+        <h2>Sign in to access your classes!</h2>
+      </div>
+    )
+
     return (
       <div className="classes wrapper">
        <header>
@@ -42,6 +48,6 @@ class ClassesContainer extends PureComponent {
   }
 }
 
-const mapStateToProps = ({ classes }) => ({ classes })
+const mapStateToProps = ({ classes, user }) => ({ classes, user })
 
 export default connect(mapStateToProps, { fetchClasses })(ClassesContainer)

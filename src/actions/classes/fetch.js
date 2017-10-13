@@ -6,16 +6,20 @@ const api = new API()
 
 export default () => {
   return (dispatch) => {
-    const backend = api.service('classes')
-    backend.find()
-    .then((result) => {
-      dispatch({
-        type: FETCH_CLASSES,
-        payload: result.data
+
+    api.app.authenticate()
+      .then(() => {
+        const backend = api.service('classes')
+        backend.find()
+        .then((result) => {
+          dispatch({
+            type: FETCH_CLASSES,
+            payload: result.data
+          })
+        })
+        .catch((error) => {
+          // error handling!
+        })
       })
-    })
-    .catch((error) => {
-      // error handling!
-    })
   }
 }

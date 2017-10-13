@@ -8,24 +8,28 @@ const api = new API()
 
 export default (classId) => {
   return (dispatch) => {
-    const backend = api.service('students')
-    backend.find({
-      query: {
-        classId: classId
-      }
-    })
-    .then((result) => {
-      const student = filterResult(result)
 
-      dispatch({
-        type: RANDOM_STUDENT,
-        payload: student
-      })
+    api.app.authenticate()
+      .then(() => {
+        const backend = api.service('students')
+        backend.find({
+          query: {
+            classId: classId
+          }
+        })
+        .then((result) => {
+          const student = filterResult(result)
 
-      history.push('/' + student._id)
-    })
-    .catch((error) => {
-      console.log(error)
+          dispatch({
+            type: RANDOM_STUDENT,
+            payload: student
+          })
+
+          history.push('/students/' + student._id)
+        })
+        .catch((error) => {
+          console.log(error)
+        })
     })
   }
 }

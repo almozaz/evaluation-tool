@@ -10,6 +10,9 @@ import ClassesContainer from './components/classes/ClassesContainer'
 import StudentsContainer from './components/students/StudentsContainer'
 import EvaluationContainer from './components/evaluation/EvaluationContainer'
 
+import SignUp from './users/SignUp'
+import SignIn from './users/SignIn'
+
 import './index.css'
 
 ReactDOM.render(
@@ -17,9 +20,10 @@ ReactDOM.render(
     <Router history={history}>
       <Route path="/" component={App}>
         <IndexRoute component={ClassesContainer} />
-        <Route path="/class" component={StudentsContainer} />
         <Route path="/classes/:classId" component={StudentsContainer} />
-        <Route path="/:studentId" component={EvaluationContainer} />
+        <Route path="/students/:studentId" component={EvaluationContainer} />
+        <Route path="/sign-up" component={SignUp} />
+        <Route path="/sign-in" component={SignIn} />
       </Route>
     </Router>
   </Provider>,

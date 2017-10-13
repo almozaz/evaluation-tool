@@ -7,16 +7,23 @@ export const CREATE_STUDENT = 'CREATE_STUDENT'
 export default (student) => {
   return (dispatch) => {
 
-    const backend = api.service('students')
-    backend.create(student)
-      .then((result) => {
-        dispatch({
-          type: CREATE_STUDENT,
-          payload: result
+    api.app.authenticate()
+      .then(() => {
+      const backend = api.service('students')
+      backend.create(student)
+        .then((result) => {
+          debugger;
+          dispatch({
+            type: CREATE_STUDENT,
+            payload: result
+          })
+        })
+        .catch((error) => {
+          console.log(error)
         })
       })
-      .catch((error) => {
-      })
-
+    .catch((error) => {
+      console.log(error)
+    })
   }
 }
