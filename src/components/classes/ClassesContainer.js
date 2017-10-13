@@ -33,16 +33,19 @@ class ClassesContainer extends PureComponent {
 
     return (
       <div className="classes wrapper">
-       <header>
-         <h1>All classes</h1>
-       </header>
+        <header>
+          <h1>All classes</h1>
+        </header>
 
-       <main>
+      <main>
         { this.props.classes.map(this.renderClass.bind(this)) }
-        <hr />
+      </main>
+
+      <hr />
+      <footer>
         <h4>Add new batch</h4>
         <ClassEditor />
-       </main>
+      </footer>
      </div>
     );
   }
