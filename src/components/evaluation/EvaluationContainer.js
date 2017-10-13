@@ -39,8 +39,10 @@ class EvaluationContainer extends PureComponent {
        </header>
 
        <main>
-       { this.renderEvaluations() }
+        { this.renderEvaluations() }
+        <hr />
         <EvaluationEditor {...this.props} />
+        <hr />
         <DeleteButton handleClick={this.delete} {...this.props} />
        </main>
      </div>

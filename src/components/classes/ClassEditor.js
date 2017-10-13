@@ -92,13 +92,13 @@ class BatchEditor extends PureComponent {
     return (
       <div className="editor">
 
-          <TextField
-            value={this.state.title}
-            onChange={this.updateTitle.bind(this)}
-            className="title"
-             hintText=""
-             floatingLabelText="Batch Number"
-           /><br />
+        <TextField
+          value={this.state.title}
+          onChange={this.updateTitle.bind(this)}
+          className="title"
+           hintText=""
+           floatingLabelText="Batch Number"
+         /><br />
 
         { errors.title ? <small className="error">{errors.title}</small> : null }
 
