@@ -1,31 +1,46 @@
 import React, { PureComponent } from 'react'
 import { connect } from 'react-redux'
 
+import DatePicker from 'material-ui/DatePicker';
+import {RadioButton, RadioButtonGroup} from 'material-ui/RadioButton';
+import ActionFavorite from 'material-ui/svg-icons/action/favorite';
+import ActionFavoriteBorder from 'material-ui/svg-icons/action/favorite-border';
+import TextField from 'material-ui/TextField';
+import FloatingActionButton from 'material-ui/FloatingActionButton';
+import ContentAdd from 'material-ui/svg-icons/content/add';
+
 import createEvaluation from '../../actions/evaluation/create'
 
 
 class EvaluationEditor extends PureComponent {
   constructor(props) {
-    super()
+    super(props)
 
-    const { day, grade, studentId } = props
+    const { day, grade, remarks, studentId } = props
 
     this.state = {
-      day,
+      day: null,
       grade,
+      remarks: '',
       errors: {}
     }
   }
 
-  updateDay(event) {
+  updateDay = (event, date) => {
     this.setState({
-      day: event.target.value
-    })
-  }
+      day: date,
+    });
+  };
 
   updateGrade(event) {
     this.setState({
       grade: event.target.value
+    })
+  }
+
+  updateRemarks(event) {
+    this.setState({
+      remarks: event.target.value
     })
   }
 
@@ -51,48 +66,82 @@ class EvaluationEditor extends PureComponent {
     const {
       day,
       grade,
+      remarks,
     } = this.state
 
     const newEvaluation = {
       day,
       grade,
+      remarks,
       studentId: this.props.params.studentId,
     }
 
     this.props.save(newEvaluation)
 
     this.setState({
-      day: '',
+      day: null,
       grade: '',
+      remarks: '',
     })
   }
 
   render() {
     const { errors } = this.state
+    const styles = {
+      block: {
+        maxWidth: 25,
+      },
+      radioButton: {
+        marginBottom: 16,
+      },
+    };
+    const style = {
+      marginRight: 20,
+    };
 
     return (
       <div className="editor">
         <h4>Add evaluation</h4>
-        <input
-          type="date"
-          ref="day"
+
+        <DatePicker
           className="day"
-          value={this.state.day}
-          onChange={this.updateDay.bind(this)} />
+           hintText="Day"
+           value={this.state.day}
+           onChange={this.updateDay}
+         />
 
         { errors.title ? <small className="error">{errors.title}</small> : null }
+        <RadioButtonGroup name="grade" >
+          <RadioButton
+             value={this.state.grade = 1}
+             label="Red"
+             style={styles.radioButton}
+           />
+           <RadioButton
+              value={this.state.grade = 2}
+              label="Yellow"
+              style={styles.radioButton}
+            />
+            <RadioButton
+               value={this.state.grade = 3}
+               label="Green"
+               style={styles.radioButton}
+             />
+        </RadioButtonGroup>
 
-        <input
-          type="number"
-          ref="grade"
-          className="grade"
-          placeholder=""
-          value={this.state.grade}
-          onChange={this.updateGrade.bind(this)} />
+        <TextField
+          className="remarks"
+          hintText="Remarks"
+          value={this.state.remarks}
+          onChange={this.updateRemarks.bind(this)}
+        /><br />
 
         <div className="actions">
-          <button className="primary" onClick={this.saveEvaluation.bind(this)}>Save</button>
+          <FloatingActionButton style={style} mini={true} onClick={this.saveEvaluation.bind(this)}>
+            <ContentAdd />
+          </FloatingActionButton>
         </div>
+
       </div>
     )
   }

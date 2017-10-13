@@ -1,18 +1,22 @@
 import React, { PureComponent } from 'react'
 import { connect } from 'react-redux'
+import DatePicker from 'material-ui/DatePicker';
+import TextField from 'material-ui/TextField';
+import FloatingActionButton from 'material-ui/FloatingActionButton';
+import ContentAdd from 'material-ui/svg-icons/content/add';
 
 import createBatch from '../../actions/classes/create'
 
 class BatchEditor extends PureComponent {
   constructor(props) {
-    super()
+    super(props);
 
     const { batch, startDate, endDate } = props
 
     this.state = {
-      batch: batch || '',
-      startDate,
-      endDate,
+      batch: '',
+      startDate: null,
+      endDate: null,
       errors: {}
     }
   }
@@ -27,17 +31,17 @@ class BatchEditor extends PureComponent {
     })
   }
 
-  updateStartDate(event) {
+  updateStartDate = (event, date) => {
     this.setState({
-      startDate: event.target.value
-    })
-  }
+      startDate: date,
+    });
+  };
 
-  updateEndDate(event) {
+  updateEndDate = (event, date) => {
     this.setState({
-      endDate: event.target.value
-    })
-  }
+      endDate: date,
+    });
+  };
 
   validate() {
     const isTitleValid = this.validateTitle()
@@ -81,36 +85,39 @@ class BatchEditor extends PureComponent {
 
   render() {
     const { errors } = this.state
+    const style = {
+      marginRight: 20,
+    };
 
     return (
       <div className="editor">
-        <input
-          type="text"
-          ref="title"
-          className="title"
-          placeholder="Batch Number"
+
+        <TextField
           value={this.state.title}
-          onChange={this.updateTitle.bind(this)} />
+          onChange={this.updateTitle.bind(this)}
+          className="title"
+           hintText=""
+           floatingLabelText="Batch Number"
+         /><br />
 
         { errors.title ? <small className="error">{errors.title}</small> : null }
 
-        <input
-          type="date"
-          ref="startDate"
-          className="startDate"
-          placeholder="Photo URL"
-          value={this.state.startDate}
-          onChange={this.updateStartDate.bind(this)} />
+        <DatePicker
+           hintText="Start Date"
+           value={this.state.startDate}
+           onChange={this.updateStartDate}
+         />
 
-        <input
-          type="date"
-          ref="endDate"
-          className="endDate"
-          value={this.state.endDate}
-          onChange={this.updateEndDate.bind(this)} />
+         <DatePicker
+            hintText="End Date"
+            value={this.state.endDate}
+            onChange={this.updateEndDate}
+          />
 
         <div className="actions">
-          <button className="primary" onClick={this.saveBatch.bind(this)}>Save</button>
+        <FloatingActionButton style={style} mini={true} onClick={this.saveBatch.bind(this)}>
+          <ContentAdd />
+        </FloatingActionButton>
         </div>
       </div>
     )

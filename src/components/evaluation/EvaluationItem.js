@@ -18,11 +18,18 @@ class EvaluationItem extends PureComponent {
         return null
     }
   }
+
+  showRemarks(){
+    if (this.props.remarks) return (
+      <h4>Remarks: {this.props.remarks}</h4>
+    )
+  }
   render() {
     return (
       <div>
       <h3>Date: {this.props.day}</h3>
       <h4>Color: { this.color() }</h4>
+      {this.showRemarks()}
       </div>
     )
   }

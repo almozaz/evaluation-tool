@@ -1,17 +1,20 @@
 import React, { PureComponent } from 'react'
 import { connect } from 'react-redux'
+import FloatingActionButton from 'material-ui/FloatingActionButton';
+import ContentAdd from 'material-ui/svg-icons/content/add';
+import TextField from 'material-ui/TextField';
 
 import createStudent from '../../actions/students/create'
 
 class StudentEditor extends PureComponent {
   constructor(props) {
-    super()
+    super(props)
 
     const { name, photo, classId } = props
 
     this.state = {
-      name,
-      photo,
+      name: '',
+      photo: '',
       errors: {}
     }
   }
@@ -73,30 +76,32 @@ class StudentEditor extends PureComponent {
 
   render() {
     const { errors } = this.state
+    const style = {
+      marginRight: 20,
+    };
 
     return (
       <div className="editor">
-        <input
-          type="text"
-          ref="name"
-          className="name"
-          placeholder="Student name"
-          value={this.state.name}
-          onChange={this.updateName.bind(this)} />
+      <TextField
+      hintText="Student name"
+      value={this.state.name}
+      onChange={this.updateName.bind(this)}
+      /><br />
 
-        { errors.title ? <small className="error">{errors.title}</small> : null }
+      { errors.title ? <small className="error">{errors.title}</small> : null }
 
-        <input
-          type="text"
-          ref="photo"
-          className="photo"
-          placeholder="Student photo"
-          value={this.state.photo}
-          onChange={this.updatePhoto.bind(this)} />
+      <TextField
+        hintText="https://www.cloudinary.jhfdjkldsfkjl.jpg"
+        floatingLabelText="Link to photo"
+        value={this.state.photo}
+        onChange={this.updatePhoto.bind(this)}
+      /><br />
 
-        <div className="actions">
-          <button className="primary" onClick={this.saveStudent.bind(this)}>Save</button>
-        </div>
+      <div className="actions">
+        <FloatingActionButton style={style} mini={true} onClick={this.saveStudent.bind(this)}>
+          <ContentAdd />
+        </FloatingActionButton>
+      </div>
       </div>
     )
   }

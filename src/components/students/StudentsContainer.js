@@ -43,7 +43,10 @@ class StudentsContainer extends PureComponent {
        <main>
         <RandomStudent {...this.props} />
         { this.renderStudents() }
+        <hr />
+        <h4>Add new student</h4>
         <StudentEditor {...this.props} />
+        <hr />
         <DeleteButton handleClick={this.delete} {...this.props} />
        </main>
      </div>

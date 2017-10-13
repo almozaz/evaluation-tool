@@ -1,6 +1,7 @@
 import React, { PureComponent } from 'react'
 import { connect } from 'react-redux'
 import { push } from 'react-router-redux';
+import RaisedButton from 'material-ui/RaisedButton';
 
 import getRandom from '../../actions/students/getRandom'
 
@@ -10,9 +11,16 @@ class RandomStudent extends PureComponent {
   }
 
   render() {
+    const style = {
+      margin: 12,
+    };
     return (
       <div>
-      <button onClick={this.getStudent.bind(this)}>Ask a question</button>
+      <RaisedButton
+      label="Ask a random student"
+      primary={true}
+      style={style}
+      onClick={this.getStudent.bind(this)} />
       </div>
     )
   }
