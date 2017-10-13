@@ -111,19 +111,19 @@ class EvaluationEditor extends PureComponent {
          />
 
         { errors.title ? <small className="error">{errors.title}</small> : null }
-        <RadioButtonGroup name="grade" >
+        <RadioButtonGroup name="grade" value={this.state.grade} onChange={this.updateGrade.bind(this)}>
           <RadioButton
-             value={this.state.grade = 1}
+             value={1}
              label="Red"
              style={styles.radioButton}
            />
            <RadioButton
-              value={this.state.grade = 2}
+              value={2}
               label="Yellow"
               style={styles.radioButton}
             />
             <RadioButton
-               value={this.state.grade = 3}
+               value={3}
                label="Green"
                style={styles.radioButton}
              />
