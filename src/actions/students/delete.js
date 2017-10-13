@@ -22,5 +22,8 @@ export default (student) => {
           .catch((error) => {
           })
       })
+    .catch((error) => {
+      console.log(error)
+    })
   }
 }

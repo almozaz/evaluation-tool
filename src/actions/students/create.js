@@ -12,13 +12,18 @@ export default (student) => {
       const backend = api.service('students')
       backend.create(student)
         .then((result) => {
+          debugger;
           dispatch({
             type: CREATE_STUDENT,
             payload: result
           })
         })
         .catch((error) => {
+          console.log(error)
         })
+      })
+    .catch((error) => {
+      console.log(error)
     })
   }
 }
